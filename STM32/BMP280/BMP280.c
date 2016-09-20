@@ -556,7 +556,7 @@ float BMP280_calculate_altitude(float v_sea_level_pressure_u32)
 	/* variable used to return communication result*/
 		BMP280_RETURN_FUNCTION_TYPE com_rslt = ERROR;
 	/* read true pressure*/
-	s32 v_pressure_u32 = BMP280_INIT_VALUE;
+	u32 v_pressure_u32 = BMP280_INIT_VALUE;
 	com_rslt = BMP280_read_pressure(&v_pressure_u32);
 	/* check the successful pressure read*/
 	if (com_rslt == ERROR) {
