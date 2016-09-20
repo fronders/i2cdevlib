@@ -1491,6 +1491,59 @@ double BMP280_compensate_temperature_double(s32 v_uncomp_temperature_s32);
  *
 */
 double BMP280_compensate_pressure_double(s32 v_uncomp_pressure_s32);
+/**************************************************************/
+/**\name	FUNCTION FOR READ TRUE TEMPERATURE    */
+/**************************************************************/
+/*!
+ * @brief This API reads the true temperature as double
+ *
+ *
+ *  @param  v_temperature_d : The value of compensated temperature.
+ *
+ *
+ *  @return results of bus communication function
+ *	@retval 0 -> Success
+ *	@retval -1 -> Error
+ *
+ *
+ */
+BMP280_RETURN_FUNCTION_TYPE BMP280_read_temperature_double(double *v_temperature_d);
+/**************************************************************/
+/**\name	FUNCTION FOR READ TRUE PRESSURE    */
+/**************************************************************/
+/*!
+ * @brief This API reads the true pressure as double
+ *
+ *
+ *  @param  v_pressure_d : The value of compensated pressure.
+ *
+ *
+ *  @return results of bus communication function
+ *	@retval 0 -> Success
+ *	@retval -1 -> Error
+ *
+ *
+ */
+BMP280_RETURN_FUNCTION_TYPE BMP280_read_pressure_double(double *v_pressure_d);
+/**************************************************************/
+/**\name	FUNCTION FOR READ TRUE PRESSURE AND TEMPERATURE    */
+/**************************************************************/
+/*!
+ * @brief This API reads the true pressure and temperature as double
+ *
+ *
+ *  @param  v_pressure_d : The value of compensated pressure.
+ *  @param  v_temperature_d : The value of compensated temperature.
+ *
+ *
+ *  @return results of bus communication function
+ *	@retval 0 -> Success
+ *	@retval -1 -> Error
+ *
+ *
+ */
+BMP280_RETURN_FUNCTION_TYPE BMP280_read_pressure_temperature_double(
+		double *v_pressure_d, double *v_temperature_d);
 #endif
 #if defined(BMP280_ENABLE_INT64) && defined(BMP280_64BITSUPPORT_PRESENT)
 /*!

@@ -466,7 +466,7 @@ BMP280_RETURN_FUNCTION_TYPE BMP280_read_temperature(s32 *v_temperature_s32)
 		/* read uncompensated temperature*/
 		com_rslt = BMP280_read_uncomp_temperature(
 				&v_uncomp_temperature_s32);
-		/* read true pressure and temperature*/
+		/* read true temperature*/
 		*v_temperature_s32 = BMP280_compensate_temperature_int32(
 				v_uncomp_temperature_s32);
 	}
@@ -1534,6 +1534,106 @@ double BMP280_compensate_pressure_double(s32 v_uncomp_pressure_s32)
 			((double)p_bmp280->calib_param.dig_P7)) / 16.0;
 
 	return pressure;
+}
+
+/*!
+ * @brief This API reads the true temperature as double
+ *
+ *
+ *  @param  v_temperature_d : The value of compensated temperature.
+ *
+ *
+ *  @return results of bus communication function
+ *	@retval 0 -> Success
+ *	@retval -1 -> Error
+ *
+ *
+ */
+BMP280_RETURN_FUNCTION_TYPE BMP280_read_temperature_double(double *v_temperature_d)
+{
+	/* variable used to return communication result*/
+	BMP280_RETURN_FUNCTION_TYPE com_rslt = ERROR;
+	s32 v_uncomp_temperature_s32 = BMP280_INIT_VALUE;
+	/* check the p_bmp280 structure pointer as NULL*/
+	if (p_bmp280 == BMP280_NULL) {
+		com_rslt = E_BMP280_NULL_PTR;
+	} else {
+		/* read uncompensated temperature*/
+		com_rslt = BMP280_read_uncomp_temperature(
+				&v_uncomp_temperature_s32);
+		/* read true temperature as double*/
+		*v_temperature_d = BMP280_compensate_temperature_double(
+				v_uncomp_temperature_s32);
+	}
+	return com_rslt;
+}
+/*!
+ * @brief This API reads the true pressure as double
+ *
+ *
+ *  @param  v_pressure_d : The value of compensated pressure.
+ *
+ *
+ *  @return results of bus communication function
+ *	@retval 0 -> Success
+ *	@retval -1 -> Error
+ *
+ *
+ */
+BMP280_RETURN_FUNCTION_TYPE BMP280_read_pressure_double(double *v_pressure_d)
+{
+	/* variable used to return communication result*/
+	BMP280_RETURN_FUNCTION_TYPE com_rslt = ERROR;
+	s32 v_uncomp_pressure_s32 = BMP280_INIT_VALUE;
+	/* check the p_bmp280 structure pointer as NULL*/
+	if (p_bmp280 == BMP280_NULL) {
+		com_rslt = E_BMP280_NULL_PTR;
+	} else {
+		/* read uncompensated pressure*/
+		com_rslt = BMP280_read_uncomp_pressure(
+				&v_uncomp_pressure_s32);
+		/* read true pressure as double*/
+		*v_pressure_d = BMP280_compensate_pressure_double(
+				v_uncomp_pressure_s32);
+	}
+	return com_rslt;
+}
+/*!
+ * @brief This API reads the true pressure and temperature as double
+ *
+ *
+ *  @param  v_pressure_d : The value of compensated pressure.
+ *  @param  v_temperature_d : The value of compensated temperature.
+ *
+ *
+ *  @return results of bus communication function
+ *	@retval 0 -> Success
+ *	@retval -1 -> Error
+ *
+ *
+ */
+BMP280_RETURN_FUNCTION_TYPE BMP280_read_pressure_temperature_double(
+		double *v_pressure_d, double *v_temperature_d)
+{
+	/* variable used to return communication result*/
+	BMP280_RETURN_FUNCTION_TYPE com_rslt = ERROR;
+	s32 v_uncomp_pressure_s32 = BMP280_INIT_VALUE;
+	s32 v_uncomp_temperature_s32 = BMP280_INIT_VALUE;
+	/* check the p_bmp280 structure pointer as NULL*/
+	if (p_bmp280 == BMP280_NULL) {
+		com_rslt = E_BMP280_NULL_PTR;
+	} else {
+		/* read uncompensated pressure and temperature*/
+		com_rslt = BMP280_read_uncomp_pressure_temperature(
+				&v_uncomp_pressure_s32,
+				&v_uncomp_temperature_s32);
+		/* read true pressure and temperature as double*/
+		*v_temperature_d = BMP280_compensate_temperature_double(
+				v_uncomp_temperature_s32);
+		*v_pressure_d = BMP280_compensate_pressure_double(
+				v_uncomp_pressure_s32);
+	}
+	return com_rslt;
 }
 #endif
 #if defined(BMP280_ENABLE_INT64) && defined(BMP280_64BITSUPPORT_PRESENT)
