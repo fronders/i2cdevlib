@@ -91,6 +91,8 @@ THE SOFTWARE.
 #define __BMP280_H__
 
 #include "I2Cdev.h"
+#include <math.h>
+
 /*!
 * @brief The following definition uses for define the data types
 *
