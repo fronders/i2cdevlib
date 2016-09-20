@@ -950,7 +950,7 @@ BMP280_RETURN_FUNCTION_TYPE BMP280_set_power_mode(u8 v_power_mode_u8)
 					BMP280_GEN_READ_WRITE_DATA_LENGTH);
 			/* Delay added concerning the low speed of power up system to
 			facilitate the proper setting of power mode */
-			p_bmp280->delay_msec(BMP280_REGISTER_READ_DELAY);
+			p_bmp280->delay_msec(T_INIT_MAX);
 		} else {
 			com_rslt = E_BMP280_OUT_OF_RANGE;
 		}
